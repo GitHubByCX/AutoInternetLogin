@@ -1,0 +1,13 @@
+此jre是基于当前项目依赖精简生成, 当项目依赖发生改变时请重新生成
+
+参考：https://blog.csdn.net/qq_36494752/article/details/138317451
+
+使用命令：
+
+cd C:\Users\cc\.jdks\corretto-11.0.26\bin
+
+jdeps -q --multi-release 11 --ignore-missing-deps --print-module-deps D:\Workspace\AutoInternetLogin\target\AutoInternetLogin\libs\*.jar
+
+jlink --module-path jmods --add-modules 上一步生成的所需依赖名称(这里需要额外加上'jdk.charsets'字符集依赖) --output jre
+
+ps. 生成的jre在 “C:\Users\cc\.jdks\corretto-11.0.26\bin\”下

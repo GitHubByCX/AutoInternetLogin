@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.cx.autointernetlogin.view.MainView">
+    <children>
+        <Label fx:id="currentStatus_Lb" layoutX="14.0" layoutY="14.0" style="-fx-font-family: Microsoft YaHei;"
+               text="当前状态:"/>
+        <Label fx:id="currentStatus_Info_Lb" layoutX="85.0" layoutY="14.0" prefHeight="18.0" prefWidth="504.0"
+               style="-fx-font-family: Microsoft YaHei;" text="..." AnchorPane.leftAnchor="85.0"
+               AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="13.0"/>
+        <Label fx:id="loginUserName_Lb" layoutX="14.0" layoutY="61.0" style="-fx-font-family: Microsoft YaHei;"
+               text="登录用户:"/>
+        <Label fx:id="loginPwd_Lb" layoutX="14.0" layoutY="97.0" style="-fx-font-family: Microsoft YaHei;"
+               text="登录密钥:"/>
+        <TextField fx:id="loginUserName_TF" layoutX="85.0" layoutY="57.0"/>
+        <TextField fx:id="loginPwd_TF" layoutX="85.0" layoutY="93.0" prefHeight="23.0" prefWidth="504.0"/>
+        <TextArea fx:id="logInfo_TA" editable="false" layoutX="14.0" layoutY="257.0" prefHeight="130.0"
+                  prefWidth="572.0" style="-fx-background-color: #eeeeee; -fx-font-family: Microsoft YaHei;"
+                  AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0"
+                  AnchorPane.topAnchor="257.0"/>
+        <CheckBox fx:id="enableCheck_Relogin_CB" layoutX="14.0" layoutY="187.0" mnemonicParsing="false"
+                  style="-fx-font-family: Microsoft YaHei;" text="是否启用定时检测掉线并重连"/>
+        <ComboBox fx:id="enableCheck_Interval_CB" layoutX="314.0" layoutY="184.0" prefWidth="150.0"/>
+        <Label fx:id="enableCheck_Interval_Lb" layoutX="254.0" layoutY="188.0" style="-fx-font-family: Microsoft YaHei;"
+               text="检查间隔："/>
+        <Label fx:id="logInfo_Lb" layoutX="14.0" layoutY="237.0" style="-fx-font-family: Microsoft YaHei;"
+               text="日志信息:"/>
+        <Button fx:id="login_Btn" layoutX="85.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0"
+                prefWidth="112.0" text="登录"/>
+        <Button fx:id="logout_Btn" layoutX="211.0" layoutY="131.0" mnemonicParsing="false" prefHeight="30.0"
+                prefWidth="112.0" text="登出"/>
+    </children>
+</AnchorPane>
