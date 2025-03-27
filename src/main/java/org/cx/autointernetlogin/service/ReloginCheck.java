@@ -26,13 +26,29 @@ public class ReloginCheck extends Thread {
 
     @Override
     public void run() {
-        // 程序启动时启动, 直到程序终止，睡眠 5 秒
-        int timeCount = 0, requestCount = 0;
+        // 程序启动时启动, 直到程序终止; 循环间隔 1 秒.
+        int timeCount = 0, requestCount = 0, checkUrl_Index = 0;
+        String[] checkUrl = new String[]{
+                "https://www.baidu.com/",
+                "https://www.sina.com.cn/",
+                "https://www.sohu.com/",
+                "https://www.qq.com/",
+                "https://www.163.com/",
+                "https://www.youku.com/",
+                "https://ai.taobao.com/",
+                "https://weibo.com/",
+                "https://s.click.taobao.com/",
+                "https://www.tmall.com/"
+        };
         while (true) {
             // 检测当前是否可以访问网络
             boolean networked;
             try {
-                URL url = new URL("http://www.baidu.com"); // 可以换成其他可靠的地址
+                if (checkUrl_Index >= checkUrl.length) {
+                    checkUrl_Index = 0;
+                }
+                URL url = new URL(checkUrl[checkUrl_Index]);
+                checkUrl_Index++;
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("HEAD");
                 connection.setConnectTimeout(3000); // 3 秒超时
@@ -61,7 +77,7 @@ public class ReloginCheck extends Thread {
                 if (interval == null)
                     interval = CheckIntervalEnum.ONE_MIN;
                 // 到达指定间隔时间后执行重连
-                if (timeCount * 5000L >= interval.getMillis()) {
+                if (timeCount * 1000L >= interval.getMillis()) {
                     LogUtils.getLogger().info("正在尝试自动重新登录...");
                     LoginInterNet.submitLogin(HelloApplication.getProjectConfig().getUsername(), HelloApplication.getProjectConfig().getPassword());
                     requestCount++;
@@ -79,8 +95,11 @@ public class ReloginCheck extends Thread {
 
             // 睡眠
             try {
-                Thread.sleep(5000L);
-                timeCount++;
+                Thread.sleep(1000L);
+                if (networked)
+                    timeCount++;
+                else
+                    timeCount += 4; // 算上检测网络时的等待超时3秒+循环时的1秒
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
