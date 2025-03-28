@@ -12,6 +12,7 @@ public class ProjectConfig {
     private boolean showPassword = false;
     private boolean reloginCheck = true;
     private int reloginCheck_Interval = CheckIntervalEnum.ONE_MIN.getIndex();
+    private String[] checkUrl;
 
     public String getUsername() {
         return username;
@@ -51,6 +52,14 @@ public class ProjectConfig {
 
     public void setReloginCheck_Interval(int reloginCheck_Interval) {
         this.reloginCheck_Interval = reloginCheck_Interval;
+    }
+
+    public String[] getCheckUrl() {
+        return checkUrl;
+    }
+
+    public void setCheckUrl(String[] checkUrl) {
+        this.checkUrl = checkUrl;
     }
 
 }

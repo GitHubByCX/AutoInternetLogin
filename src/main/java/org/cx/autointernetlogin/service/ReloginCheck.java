@@ -28,18 +28,22 @@ public class ReloginCheck extends Thread {
     public void run() {
         // 程序启动时启动, 直到程序终止; 循环间隔 1 秒.
         int timeCount = 0, requestCount = 0, checkUrl_Index = 0;
-        String[] checkUrl = new String[]{
-                "https://www.baidu.com/",
-                "https://www.sina.com.cn/",
-                "https://www.sohu.com/",
-                "https://www.qq.com/",
-                "https://www.163.com/",
-                "https://www.youku.com/",
-                "https://ai.taobao.com/",
-                "https://weibo.com/",
-                "https://s.click.taobao.com/",
-                "https://www.tmall.com/"
-        };
+        if (HelloApplication.getProjectConfig().getCheckUrl() == null
+                || HelloApplication.getProjectConfig().getCheckUrl().length == 0) {
+            HelloApplication.getProjectConfig().setCheckUrl(new String[]{
+                    "http://www.baidu.com/",
+                    "http://fanyi-pro.baidu.com/",
+                    "http://map.baidu.com/",
+                    "http://xueshu.baidu.com/",
+                    "http://news.baidu.com/",
+                    "http://image.baidu.com/",
+                    "http://fanyi.baidu.com/",
+                    "http://www.sohu.com/",
+                    "http://www.qq.com/",
+                    "http://www.youku.com/",
+            });
+        }
+        String[] checkUrl = HelloApplication.getProjectConfig().getCheckUrl();
         while (true) {
             // 检测当前是否可以访问网络
             boolean networked;

@@ -1,6 +1,7 @@
 package org.cx.autointernetlogin.util;
 
 import org.cx.autointernetlogin.config.ProjectConfig;
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
@@ -40,7 +41,9 @@ public class YamlUtils {
      * @throws IOException 保存失败
      */
     public static void saveProjectConfig(String saveFilePath, ProjectConfig projectConfig) throws IOException {
-        Yaml yaml = new Yaml();
+        DumperOptions options = new DumperOptions();
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        Yaml yaml = new Yaml(options);
         FileWriter fileWriter = new FileWriter(saveFilePath);
         yaml.dump(projectConfig, fileWriter);
     }
